@@ -46,6 +46,7 @@ class ArxivDateFilter(object):
 
 
 class ArxivAdvanceSearch(object):
+    NAME = 'ARXIV'
     ORDER_ANNOUNCED_DATE_FIRST = 'announced_date_first'
     ORDER_ANNOUNCED_DATE_LAST = '-%s' % ORDER_ANNOUNCED_DATE_FIRST
     ORDER_SUBMITTED_DATE_FIRST = 'announced_date_first'
@@ -75,7 +76,7 @@ class ArxivAdvanceSearch(object):
         self.show_abstracts = 'show'
         self.arxiv_size = 200
         self.page = 0
-        self.show = 7
+        self.show = 5
 
     @property
     def params(self):
@@ -164,7 +165,7 @@ class ArxivAdvanceSearch(object):
                 # print(title, abstract, authors, submitted, tags, href)
                 article = Article(
                     title=title, summary=abstract.strip(), authors=authors,
-                    submitted_date=submitted, tags=tags, link=href, count=count)
+                    submitted_date=submitted, tags=tags, link=href, count=count, source=self.NAME)
                 articles.append(article)
 
         return list(sorted(articles, key=lambda a: a.weight, reverse=True))[:self.show]

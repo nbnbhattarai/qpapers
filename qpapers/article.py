@@ -11,6 +11,7 @@ COLOR_HREF = '\033[1;34;40m'
 
 class Article(object):
     def __init__(self, *args, **kwargs):
+        self.source = kwargs.get('source')
         self.title = kwargs.get('title', '')
         self.summary = kwargs.get('summary', '')
         self.authors = kwargs.get('authors', [])
@@ -20,9 +21,14 @@ class Article(object):
         self.weight = kwargs.get('weight', 0)
 
     def __str__(self):
-        return "{}{}{} < {}{}{}: {}{}{} >\n{}\nhref: {}{}{}".format(
-            COLOR_TITLE, self.title, COLOR_NORMAL, COLOR_AUTHOR, self.author, COLOR_NORMAL,
-            COLOR_DATE, self.date, COLOR_NORMAL, self.summary, COLOR_HREF, self.href, COLOR_NORMAL)
+        return "{}{}{}{} < {}{}{}: {}{}{} >\n{}\nhref: {}{}{}".format(
+            self.source_formatted, COLOR_TITLE, self.title, COLOR_NORMAL, COLOR_AUTHOR, self.author,
+            COLOR_NORMAL, COLOR_DATE, self.date, COLOR_NORMAL, self.summary, COLOR_HREF, self.href, COLOR_NORMAL)
+
+    @property
+    def source_formatted(self):
+        return "{c_b}[{c_s}{s_r}{c_b}]{c_n} ".format(
+            c_b=COLOR_AUTHOR, c_s=COLOR_HREF, s_r=self.source, c_n=COLOR_NORMAL) if self.source else ''
 
     @property
     def author(self):

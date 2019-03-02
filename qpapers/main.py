@@ -1,9 +1,11 @@
 import sys
 
 from .arxiv import ArxivAdvanceSearch
+from .scienceopen import ScienceOpenSearch
 
 SEARCH_ENGINES = [
     ArxivAdvanceSearch,
+    ScienceOpenSearch
 ]
 
 
