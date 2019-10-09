@@ -1,0 +1,7 @@
+services:
+    arxiv:
+        enabled: true
+        results: 2
+    scienceopen:
+        enabled: false
+        results: 5

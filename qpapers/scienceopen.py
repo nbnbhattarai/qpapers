@@ -18,6 +18,9 @@ class ScienceOpenSearch(object):
     def set_keyword(self, keyword):
         self.keyword = keyword
 
+    def set_results(self, results):
+        self.result = results
+
     @property
     def params(self):
         filters = [

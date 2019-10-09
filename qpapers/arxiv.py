@@ -3,7 +3,11 @@ import re
 
 from bs4 import BeautifulSoup
 
-from .article import Article
+from .article import (
+    COLOR_TITLE,
+    COLOR_NORMAL,
+    Article,
+)
 
 
 class ArxivDateFilter(object):
@@ -97,6 +101,9 @@ class ArxivAdvanceSearch(object):
 
     def set_keyword(self, keyword):
         self.term = keyword
+
+    def set_results(self, results):
+        self.show = results
 
     def search(self):
         return requests.get(self.url, params=self.params)
